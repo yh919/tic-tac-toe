@@ -5,8 +5,6 @@ import Cell from "./components/cell";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-let snd = new Audio("click.mp3");
-
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
