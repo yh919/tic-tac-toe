@@ -1,95 +1,95 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+/** @format */
+"use client";
+import { use, useEffect, useState } from "react";
+import Cell from "./components/cell";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const winningCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
 
 export default function Home() {
+  const [cells, setCells] = useState(["", "", "", "", "", "", "", "", ""]);
+  const [go, setGo] = useState("Circle");
+  const [winMessage, setWinMessage] = useState("");
+  useEffect(() => {
+    winningCombos.forEach((combo) => {
+      const circleWins = combo.every((cell) => cells[cell] === "circle");
+      const crossWins = combo.every((cell) => cells[cell] === "cross");
+
+      if (circleWins) {
+        setWinMessage("Circle Wins!");
+        Swal.fire({
+          icon: "success",
+          title: winMessage,
+          showConfirmButton: true,
+          confirmButtonText: "New Game",
+          didClose: () => {
+            location.reload();
+          },
+          allowOutsideClick: true,
+        });
+      } else if (crossWins) {
+        setWinMessage("Cross Wins!");
+        Swal.fire({
+          icon: "success",
+          title: winMessage,
+          showConfirmButton: true,
+          confirmButtonText: "New Game",
+          allowOutsideClick: true,
+          didClose: () => {
+            location.reload();
+          },
+        });
+        setTimeout(() => {
+          location.reload();
+        }, 5000);
+      }
+    });
+  }, [cells, winMessage]);
+
+  useEffect(() => {
+    if (cells.every((cell) => cell !== "") && !winMessage) {
+      setWinMessage("Draw!");
+      Swal.fire({
+        icon: "info",
+        title: "Draw!",
+        showConfirmButton: true,
+        confirmButtonText: "New Game",
+        allowOutsideClick: true,
+        didClose: () => {
+          location.reload();
+        },
+      });
+    }
+  }, [cells, winMessage]);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <div className='container'>
+      <div className='gameboard'>
+        {cells.map((cell, i) => (
+          <Cell
+            id={i}
+            key={i}
+            go={go}
+            setGo={setGo}
+            cells={cells}
+            setCells={setCells}
+            cell={cell}
+            winMessage={winMessage}
+          />
+        ))}
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      {!winMessage && (
+        <div className='player-turn'>{`It's now ${go}'s turn`}</div>
+      )}
+    </div>
+  );
 }
