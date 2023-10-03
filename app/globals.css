@@ -1,5 +1,52 @@
 /** @format */
 
+body {
+  background-color: rgb(58, 57, 57);
+  color: whitesmoke;
+}
+
+.homepage {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  background-color: none;
+}
+
+.start-play {
+  cursor: pointer;
+  background-color: rgb(103, 34, 168);
+  color: white;
+  width: 125px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.start-play:hover {
+  background-color: rgb(81, 25, 133);
+}
+
+.start-play a {
+  color: white;
+}
+
+.start-play a:visited {
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+}
 .container {
   height: 100vh;
   display: flex;
@@ -17,12 +64,14 @@
 }
 
 .square {
+  cursor: pointer;
+  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100px;
   height: 100px;
-  border: solid 3px black;
+  border: solid 3px white;
   box-sizing: border-box;
 }
 
@@ -40,24 +89,54 @@
   color: blue;
 }
 
-.new-game {
-  margin: 10px;
+.myInformation {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.links {
+  font-style: none;
+  margin: 5px;
   padding: 10px;
-  width: 125px;
+  width: 95px;
   border: none;
   border-radius: 7.5px;
-  background-color: rgb(138, 43, 226);
   color: whitesmoke;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.new-game:hover {
-  background-color: rgb(93, 28, 154);
+.links:hover {
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
-  /* -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53); */
-  /* -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53); */
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+}
+
+button a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+button a:visited {
+  color: white;
+}
+
+.github-link {
+  background-color: rgb(28, 27, 28);
+}
+.github-link:hover {
+  background-color: rgb(47, 46, 47);
+}
+
+.linkedin-link {
+  background-color: rgb(33, 76, 233);
+}
+.linkedin-link:hover {
+  background-color: rgb(23, 52, 159);
 }
 
 .player-turn,
@@ -67,4 +146,37 @@
   font-weight: 700;
 }
 
+.user-buttons {
+  display: flex;
+  flex-direction: row;
+}
 
+.back-home {
+  margin-right: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  color: whitesmoke;
+  font-weight: 700;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(103, 34, 168);
+  font-weight: 900;
+}
+
+.new-game {
+  cursor: pointer;
+  margin-top: 20px;
+  color: whitesmoke;
+  font-weight: 700;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(103, 34, 168);
+}
+
+.new-game:hover {
+  background-color: rgb(81, 25, 133);
+}

@@ -1,6 +1,7 @@
 /** @format */
 
 import { Dispatch, SetStateAction } from "react";
+import api from "../api";
 
 type CellProps = {
   id: number;
