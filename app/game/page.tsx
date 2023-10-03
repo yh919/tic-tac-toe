@@ -31,11 +31,11 @@ function Game() {
   const [circleScore, setCircleScore] = useState("0");
   const [crossScore, setCrossScore] = useState("0");
 
-  localStorage.setItem("circle-score", circleScore);
-  localStorage.setItem("cross-score", crossScore);
+  // localStorage.setItem("circle-score", circleScore);
+  // localStorage.setItem("cross-score", crossScore);
 
-  let crcScore = localStorage.getItem("circle-score");
-  let crsScore = localStorage.getItem("cross-score");
+  // let crcScore = localStorage.getItem("circle-score");
+  // let crsScore = localStorage.getItem("cross-score");
 
   useEffect(() => {
     winningCombos.forEach((combo) => {
@@ -135,10 +135,10 @@ function Game() {
       </div>
       <div className='scoreboard'>
         <div className='circle-score'>
-          <h4>Circle: {crcScore}</h4>
+          <h4>Circle: {circleScore}</h4>
         </div>
         <div className='cross-score'>
-          <h4>Cross: {crsScore}</h4>
+          <h4>Cross: {crossScore}</h4>
         </div>
       </div>
       <div className='gameboard'>
