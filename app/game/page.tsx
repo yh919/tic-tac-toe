@@ -31,12 +31,6 @@ function Game() {
   const [circleScore, setCircleScore] = useState("0");
   const [crossScore, setCrossScore] = useState("0");
 
-  // localStorage.setItem("circle-score", circleScore);
-  // localStorage.setItem("cross-score", crossScore);
-
-  // let crcScore = localStorage.getItem("circle-score");
-  // let crsScore = localStorage.getItem("cross-score");
-
   useEffect(() => {
     winningCombos.forEach((combo) => {
       const circleWins = combo.every((cell) => cells[cell] === "circle");
@@ -54,15 +48,12 @@ function Game() {
           didClose: () => {
             newGame();
             if (winMessage == "Circle Wins!") {
-              let circlescore: number = 0;
-              circlescore += 1;
-              if (circlescore >= 1) {
-                circlescore + 1;
-              }
-              console.log(circlescore);
-              setCircleScore(String(circlescore));
+              let score = Number(circleScore);
+              score >= 0 && score++;
+              setCircleScore(String(score));
+              console.log(circleScore);
             }
-            localStorage.setItem("circle-score", String(circleScore));
+            sessionStorage.setItem("circle-score", String(circleScore));
           },
           allowOutsideClick: true,
           timer: 5000,
@@ -80,15 +71,11 @@ function Game() {
           didClose: () => {
             newGame();
             if (winMessage == "Cross Wins!") {
-              let crossscore: number = 0;
-              crossscore += 1;
-              if (crossscore >= 1) {
-                crossscore + 1;
-              }
-              console.log(crossscore);
-              setCrossScore(String(crossscore));
+              let score = Number(crossScore);
+              score >= 0 && score++;
+              setCrossScore(String(score));
             }
-            localStorage.setItem("circle-score", String(crossScore));
+            sessionStorage.setItem("circle-score", String(crossScore));
           },
           timer: 5000,
         });
@@ -175,7 +162,7 @@ function Game() {
           Restart Score
         </button>
       </div>
-      <h4>{`Note: Score don\'t Work Well (Stuck at 1)`}</h4>
+      {/* <h4>{`Note: Score don\'t Work Well (Stuck at 1)`}</h4> Solved !  */}
     </div>
   );
 }
