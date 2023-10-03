@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div className='homepage'>
       <div className='header'></div>
-      <h2>Welcome to Tic-Tac-Toe Game</h2>
+      <h2>Tic-Tac-Toe</h2>
       <div className='cross-circle-homepage'>
         <h3 className='cross-home'>X</h3>
         <h3 className='circle-home'>O</h3>
