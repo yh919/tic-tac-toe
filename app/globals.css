@@ -130,6 +130,7 @@ a {
 
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .links {
