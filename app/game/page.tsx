@@ -142,6 +142,9 @@ function Game() {
         </button>
       </div>
       {Social()}
+      <div>
+        <h2>Note: Score do not work</h2>
+      </div>
     </div>
   );
 }
