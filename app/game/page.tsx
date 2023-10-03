@@ -26,6 +26,12 @@ function Game() {
   const [cells, setCells] = useState(["", "", "", "", "", "", "", "", ""]);
   const [go, setGo] = useState("Circle");
   const [winMessage, setWinMessage] = useState("");
+  const [circleScore, setCircleScore] = useState("0");
+  const [crossScore, setCrossScore] = useState("0");
+
+  sessionStorage.setItem("circle-score", circleScore);
+  sessionStorage.setItem("cross-score", crossScore);
+
   useEffect(() => {
     winningCombos.forEach((combo) => {
       const circleWins = combo.every((cell) => cells[cell] === "circle");
@@ -77,11 +83,38 @@ function Game() {
       });
     }
   }, [cells, winMessage]);
+
+  function ScoreBoard() {}
+
+  useEffect(() => {
+    if (winMessage == "Circle Wins!") {
+      let circlescore = "1";
+      parseInt(circlescore);
+      circlescore + 1;
+      setCircleScore(String(circlescore));
+    } else if (winMessage == "Cross Wins!") {
+      let crossscore = "1";
+      parseInt(crossscore);
+      crossscore + 1;
+      setCrossScore(String(crossscore));
+    } else if (winMessage == "Draw!") {
+      console.log(`Test 3 done`);
+    }
+  }, [circleScore, crossScore, winMessage]);
+
   return (
     <div className='container'>
       <div className='myInformation'>
         <h3>Tic-Tac-Toe</h3>
         <h3>Game Developed by YH</h3>
+      </div>
+      <div className='scoreboard'>
+        <div className='circle-score'>
+          <h4>Circle: {circleScore}</h4>
+        </div>
+        <div className='cross-score'>
+          <h4>Cross: {crossScore}</h4>
+        </div>
       </div>
       <div className='gameboard'>
         {cells.map((cell, i) => (

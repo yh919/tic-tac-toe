@@ -3,6 +3,7 @@
 body {
   background-color: rgb(58, 57, 57);
   color: whitesmoke;
+  text-align: center;
 }
 
 .homepage {
@@ -48,7 +49,7 @@ a {
   margin: 5px;
 }
 .container {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -177,6 +178,33 @@ button a:visited {
   background-color: rgb(103, 34, 168);
 }
 
-.new-game:hover {
+.new-game:hover,
+.back-home:hover,
+.start-play:hover {
   background-color: rgb(81, 25, 133);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+}
+
+.scoreboard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.circle-score,
+.cross-score {
+  font-size: 15px;
+  background-color: beige;
+  color: black;
+  margin: 10px;
+  width: 125px;
+  border-radius: 10px;
+}
+
+.circle-score,
+.cross-score h4 {
+  text-align: center;
 }
