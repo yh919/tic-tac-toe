@@ -27,10 +27,10 @@ export default function Home() {
         <h3 className='cross-home'>X</h3>
         <h3 className='circle-home'>O</h3>
       </div>
-      <h3>Developed by YH</h3>
       <button className='start-play'>
         <a href='/game'>Start Game</a>
       </button>
+      <h3>Developed by YH</h3>
       {Social()}
     </div>
   );
