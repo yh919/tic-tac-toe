@@ -30,8 +30,8 @@ export default function Home() {
       <button className='start-play'>
         <a href='/game'>Start Game</a>
       </button>
-      <h3>Developed by YH</h3>
       {Social()}
+      <h3>Developed by YH</h3>
     </div>
   );
 }
