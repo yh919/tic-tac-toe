@@ -20,6 +20,14 @@ export default function Social() {
             Github
           </a>
         </button>
+        <button className='links facebook-link'>
+          <a
+            href={`https://facebook.com/${facebookUserName}`}
+            target='_blank'
+            className='button-a'>
+            Facebook
+          </a>
+        </button>
         <button className='links linkedin-link'>
           <a
             href={`https://linkedin.com/in/${linkedinUserName}`}
@@ -28,12 +36,20 @@ export default function Social() {
             Linkedin
           </a>
         </button>
+        <button className='links twitter-link'>
+          <a
+            href={`https://twitter.com/${twitterUserName}`}
+            target='_blank'
+            className='button-a'>
+            Twitter (X)
+          </a>
+        </button>
         <button className='links github-link'>
           <a
             href={`http://github.com/${githubLogin}/tic-tac-toe`}
             target='_blank'
             className='button-a'>
-            Project Repo
+            Project Repositery
           </a>
         </button>
       </div>

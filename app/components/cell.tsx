@@ -11,6 +11,8 @@ type CellProps = {
   setCells: Dispatch<SetStateAction<string[]>>;
   cell: string;
   winMessage: string;
+  player: string;
+  setPlayer: Dispatch<SetStateAction<string>>;
 };
 
 const Cell = ({
@@ -21,6 +23,8 @@ const Cell = ({
   setCells,
   cell,
   winMessage,
+  player,
+  setPlayer,
 }: CellProps) => {
   const handleClick = (e: any) => {
     const notTaken = !cells[id];
@@ -30,8 +34,10 @@ const Cell = ({
     if (notTaken) {
       if (go === "Circle") {
         handleCellChange("circle");
+        setPlayer("Player Two");
         setGo("Cross");
       } else if (go === "Cross") {
+        setPlayer("Player One");
         handleCellChange("cross");
         setGo("Circle");
       }

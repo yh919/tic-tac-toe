@@ -7,9 +7,9 @@ import withReactContent from "sweetalert2-react-content";
 import api from "../api";
 import Social from "../components/social";
 
-function newGame() {
-  location.reload();
-}
+// function newGame() {
+//   location.reload();
+// }
 
 const winningCombos = [
   [0, 1, 2],
@@ -26,11 +26,16 @@ function Game() {
   const [cells, setCells] = useState(["", "", "", "", "", "", "", "", ""]);
   const [go, setGo] = useState("Circle");
   const [winMessage, setWinMessage] = useState("");
+  const [player, setPlayer] = useState("");
+
   const [circleScore, setCircleScore] = useState("0");
   const [crossScore, setCrossScore] = useState("0");
 
-  sessionStorage.setItem("circle-score", circleScore);
-  sessionStorage.setItem("cross-score", crossScore);
+  localStorage.setItem("circle-score", circleScore);
+  localStorage.setItem("cross-score", crossScore);
+
+  let crcScore = localStorage.getItem("circle-score");
+  let crsScore = localStorage.getItem("cross-score");
 
   useEffect(() => {
     winningCombos.forEach((combo) => {
@@ -44,10 +49,23 @@ function Game() {
           title: winMessage,
           showConfirmButton: true,
           confirmButtonText: "New Game",
+          footer:
+            "Click new game to start a new game Or Game will started automaticly after a few seconds",
           didClose: () => {
-            location.reload();
+            newGame();
+            if (winMessage == "Circle Wins!") {
+              let circlescore: number = 0;
+              circlescore += 1;
+              if (circlescore >= 1) {
+                circlescore + 1;
+              }
+              console.log(circlescore);
+              setCircleScore(String(circlescore));
+            }
+            localStorage.setItem("circle-score", String(circleScore));
           },
           allowOutsideClick: true,
+          timer: 5000,
         });
       } else if (crossWins) {
         setWinMessage("Cross Wins!");
@@ -57,16 +75,26 @@ function Game() {
           showConfirmButton: true,
           confirmButtonText: "New Game",
           allowOutsideClick: true,
+          footer:
+            "Click new game to start a new game Or Game will started automaticly after a few seconds",
           didClose: () => {
-            location.reload();
+            newGame();
+            if (winMessage == "Cross Wins!") {
+              let crossscore: number = 0;
+              crossscore += 1;
+              if (crossscore >= 1) {
+                crossscore + 1;
+              }
+              console.log(crossscore);
+              setCrossScore(String(crossscore));
+            }
+            localStorage.setItem("circle-score", String(crossScore));
           },
+          timer: 5000,
         });
-        setTimeout(() => {
-          location.reload();
-        }, 5000);
       }
     });
-  }, [cells, winMessage]);
+  }, [cells, circleScore, crossScore, winMessage]);
 
   useEffect(() => {
     if (cells.every((cell) => cell !== "") && !winMessage) {
@@ -77,30 +105,27 @@ function Game() {
         showConfirmButton: true,
         confirmButtonText: "New Game",
         allowOutsideClick: true,
+        footer:
+          "Click new game to start a new game Or Game will started automaticly after a few seconds",
         didClose: () => {
-          location.reload();
+          newGame();
+          if (winMessage == "Draw!") {
+            console.log(`Test 3 done`);
+          }
         },
+        timer: 5000,
       });
     }
   }, [cells, winMessage]);
 
-  function ScoreBoard() {}
-
-  useEffect(() => {
-    if (winMessage == "Circle Wins!") {
-      let circlescore = "1";
-      parseInt(circlescore);
-      circlescore + 1;
-      setCircleScore(String(circlescore));
-    } else if (winMessage == "Cross Wins!") {
-      let crossscore = "1";
-      parseInt(crossscore);
-      crossscore + 1;
-      setCrossScore(String(crossscore));
-    } else if (winMessage == "Draw!") {
-      console.log(`Test 3 done`);
-    }
-  }, [circleScore, crossScore, winMessage]);
+  function newGame() {
+    setPlayer("");
+    setWinMessage("");
+    setCells(["", "", "", "", "", "", "", "", ""]);
+  }
+  function restart() {
+    location.reload();
+  }
 
   return (
     <div className='container'>
@@ -110,10 +135,10 @@ function Game() {
       </div>
       <div className='scoreboard'>
         <div className='circle-score'>
-          <h4>Circle: {circleScore}</h4>
+          <h4>Circle: {crcScore}</h4>
         </div>
         <div className='cross-score'>
-          <h4>Cross: {crossScore}</h4>
+          <h4>Cross: {crsScore}</h4>
         </div>
       </div>
       <div className='gameboard'>
@@ -127,11 +152,17 @@ function Game() {
             setCells={setCells}
             cell={cell}
             winMessage={winMessage}
+            player={player}
+            setPlayer={setPlayer}
           />
         ))}
       </div>
-      {!winMessage && (
-        <div className='player-turn'>{`It's now ${go}'s turn`}</div>
+      {!player ? (
+        <div className='player-turn'> Select Cell to Identify Players </div>
+      ) : (
+        !winMessage && (
+          <div className='player-turn'>{`${player}'s (${go}) turn`}</div>
+        )
       )}
       <div className='user-buttons'>
         <button className='back-home'>
@@ -140,11 +171,11 @@ function Game() {
         <button className='new-game' onClick={newGame}>
           New Game
         </button>
+        <button className='restart-game' onClick={restart}>
+          Restart Score
+        </button>
       </div>
-      {Social()}
-      <div>
-        <h2>Note: Score do not work</h2>
-      </div>
+      <h4>{`Note: Score don\'t Work Well (Stuck at 1)`}</h4>
     </div>
   );
 }

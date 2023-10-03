@@ -18,6 +18,40 @@ a {
   background-color: none;
 }
 
+.cross-circle-homepage {
+  display: flex;
+  align-items: center;
+}
+
+.circle-home,
+.cross-home {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 35px;
+  color: rgb(58, 57, 57);
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
+}
+
+.cross-home {
+  background-color: red;
+}
+
+.cross-home:hover {
+  background-color: rgb(171, 15, 15);
+}
+
+.circle-home {
+  background-color: blue;
+}
+.cricle-home:hover {
+  background-color: rgb(0, 43, 200);
+}
+
 .start-play {
   cursor: pointer;
   background-color: rgb(103, 34, 168);
@@ -126,11 +160,21 @@ button a:visited {
   color: white;
 }
 
-.github-link {
+.github-link,
+.twitter-link {
   background-color: rgb(28, 27, 28);
 }
-.github-link:hover {
+.github-link:hover,
+.twitter-link:hover {
   background-color: rgb(47, 46, 47);
+}
+
+.facebook-link {
+  background-color: rgb(57, 97, 245);
+}
+
+.facebook-link:hover {
+  background-color: rgb(50, 86, 218);
 }
 
 .linkedin-link {
@@ -155,10 +199,9 @@ button a:visited {
 .back-home {
   margin-right: 10px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 15px;
   color: whitesmoke;
   font-weight: 700;
-  margin-top: 15px;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -167,6 +210,11 @@ button a:visited {
 }
 
 .new-game {
+  margin-right: 10px;
+}
+
+.new-game,
+.restart-game {
   cursor: pointer;
   margin-top: 20px;
   color: whitesmoke;
@@ -180,7 +228,8 @@ button a:visited {
 
 .new-game:hover,
 .back-home:hover,
-.start-play:hover {
+.start-play:hover,
+.restart-game:hover {
   background-color: rgb(81, 25, 133);
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
   -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.53);
@@ -196,15 +245,25 @@ button a:visited {
 
 .circle-score,
 .cross-score {
-  font-size: 15px;
-  background-color: beige;
-  color: black;
+  font-size: 13px;
+  background-color: rgb(103, 34, 168);
+  color: whitesmoke;
   margin: 10px;
-  width: 125px;
+  width: 100px;
   border-radius: 10px;
 }
 
 .circle-score,
 .cross-score h4 {
   text-align: center;
+}
+
+.circle-score:hover {
+  cursor: pointer;
+  background-color: blue;
+}
+
+.cross-score:hover {
+  cursor: pointer;
+  background-color: red;
 }
