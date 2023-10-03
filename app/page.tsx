@@ -17,7 +17,6 @@ import { title } from "process";
 //     inputLabel: "Player One",
 //   });
 // }
-
 export default function Home() {
   return (
     <div className='homepage'>
