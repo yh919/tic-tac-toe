@@ -26,6 +26,7 @@ export default function Home() {
         <h3 className='cross-home'>X</h3>
         <h3 className='circle-home'>O</h3>
       </div>
+      <br />
       <button className='start-play'>
         <a href='/game'>Start Game</a>
       </button>
