@@ -6,6 +6,7 @@ import Social from "./components/social";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { title } from "process";
+import Button from "react-bootstrap/Button";
 
 // let playerOne = "";
 // let playerTwo = "";
